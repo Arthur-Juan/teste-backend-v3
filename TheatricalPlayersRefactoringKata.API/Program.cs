@@ -1,4 +1,5 @@
 using TheatricalPlayersRefactoringKata.Application.Services;
+using TheatricalPlayersRefactoringKata.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureData(builder.Configuration);
 
 builder.Services.AddScoped<StatementPrinterService>();
 
