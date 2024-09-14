@@ -63,8 +63,8 @@ public class StatementPrinterTests
             }
         );
 
-        StatementPrinter statementPrinter = new StatementPrinter();
-        var result = statementPrinter.Print(invoice, plays);
+        var _statementPrinterService = new StatementPrinterService();
+        var result = _statementPrinterService.Print(invoice, plays);
 
         Approvals.Verify(result);
     }
