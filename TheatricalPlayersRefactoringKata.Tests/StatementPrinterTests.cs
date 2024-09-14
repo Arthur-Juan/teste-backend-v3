@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using TheatricalPlayersRefactoringKata.Application.Services;
 using TheatricalPlayersRefactoringKata.Data.Domain;
 using Xunit;
 
@@ -10,6 +11,8 @@ namespace TheatricalPlayersRefactoringKata.Tests;
 
 public class StatementPrinterTests
 {
+    private  StatementPrinterService _statementPrinterService;
+
     [Fact]
     [UseReporter(typeof(DiffReporter))]
     public void TestStatementExampleLegacy()
@@ -29,8 +32,8 @@ public class StatementPrinterTests
             }
         );
 
-        StatementPrinter statementPrinter = new StatementPrinter();
-        var result = statementPrinter.Print(invoice, plays);
+         _statementPrinterService = new StatementPrinterService();
+        var result = _statementPrinterService.Print(invoice, plays);
 
         Approvals.Verify(result);
     }
