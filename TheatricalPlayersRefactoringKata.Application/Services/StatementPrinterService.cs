@@ -28,8 +28,7 @@ namespace TheatricalPlayersRefactoringKata.Application.Services
                 switch (play.Type)
                 {
                     case "tragedy":
-                        if (perf.Audience > 30)
-                        {
+                        if (perf.Audience > 30)                        {
                             thisAmount += 1000 * (perf.Audience - 30);
                         }
                         break;
