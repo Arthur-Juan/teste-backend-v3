@@ -3,7 +3,7 @@ namespace TheatricalPlayersRefactoringKata.Data.Domain;
 public class Performance : BaseEntity
 {
 
-    public string PlayId { get; private set; }
+    public Play Play { get; private set; }
     public int Audience { get; private set; }
 
     public Performance()
@@ -11,9 +11,9 @@ public class Performance : BaseEntity
         
     }
 
-    public Performance(string playID, int audience)
+    public Performance(Play play, int audience)
     {
-        PlayId = playID;
+        Play = play;
         Audience = audience;
     }
 
