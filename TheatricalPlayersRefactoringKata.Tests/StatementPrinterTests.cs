@@ -23,7 +23,7 @@ public class StatementPrinterTests
         plays.Add("othello", new Play("Othello", 3560, "tragedy"));
 
         Invoice invoice = new Invoice(
-            "BigCo",
+            new Customer("BigCo"),
             new List<Performance>
             {
                 new Performance("hamlet", 55),
@@ -51,7 +51,7 @@ public class StatementPrinterTests
         plays.Add("richard-iii", new Play("Richard III", 3718, "history"));
 
         Invoice invoice = new Invoice(
-            "BigCo",
+            new Customer("BigCo"),
             new List<Performance>
             {
                 new Performance("hamlet", 55),
