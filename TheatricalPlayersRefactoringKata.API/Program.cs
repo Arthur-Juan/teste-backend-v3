@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureData(builder.Configuration);
 
 builder.Services.AddScoped<StatementPrinterService>();
+builder.Services.AddScoped<CustomerService>();
 
 var app = builder.Build();
 

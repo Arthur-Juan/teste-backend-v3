@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TheatricalPlayersRefactoringKata.Data.Domain;
 
 public class Performance : BaseEntity
@@ -5,6 +7,7 @@ public class Performance : BaseEntity
 
     public Play Play { get; private set; }
     public int Audience { get; private set; }
+    [NotMapped]
     public string PlayId { get; set; }
     public Performance()
     {

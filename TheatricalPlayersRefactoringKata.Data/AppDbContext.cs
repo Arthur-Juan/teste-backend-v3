@@ -17,6 +17,6 @@ namespace TheatricalPlayersRefactoringKata.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Performance> Performances { get; set; }
         public DbSet<Play> Plays { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
     }
 }
