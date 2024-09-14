@@ -28,6 +28,7 @@ namespace TheatricalPlayersRefactoringKata.API.Controllers
                 performances.Add(new Performance(perf.playId, perf.audience));
             }
 
+
             var invoice= new Invoice(new Customer(data.customer), performances);
 
             var result = _statementPrinterService.Print(invoice, data.plays);
