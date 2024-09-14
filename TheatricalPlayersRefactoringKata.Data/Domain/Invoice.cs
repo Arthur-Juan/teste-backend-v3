@@ -4,11 +4,9 @@ namespace TheatricalPlayersRefactoringKata.Data.Domain;
 
 public class Invoice : BaseEntity
 {
-    private string _customer;
-    private List<Performance> _performances;
 
-    public string Customer { get => _customer; set => _customer = value; }
-    public List<Performance> Performances { get => _performances; set => _performances = value; }
+    public string Customer { get; private set; }
+    public List<Performance> Performances { get; private set; }
 
     public Invoice()
     {
@@ -17,8 +15,8 @@ public class Invoice : BaseEntity
 
     public Invoice(string customer, List<Performance> performance)
     {
-        this._customer = customer;
-        this._performances = performance;
+        Customer = customer;
+        Performances = performance;
     }
 
 }

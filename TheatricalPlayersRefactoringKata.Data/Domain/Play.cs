@@ -2,20 +2,27 @@ namespace TheatricalPlayersRefactoringKata.Data.Domain;
 
 public class Play : BaseEntity
 {
-    private string _name;
-    private int _lines;
-    private string _type;
-
-    public string Name { get => _name; set => _name = value; }
-    public int Lines { get => _lines; set => _lines = value; }
-    public string Type { get => _type; set => _type = value; }
+  
+    public string Name { get; private set; }
+    public int Lines { get; private set; }
+    public string Type { get; private set; }
+    public string? Slug { get; private set; }
     public Play()
     {
         
     }
-    public Play(string name, int lines, string type) {
-        this._name = name;
-        this._lines = lines;
-        this._type = type;
+    public Play(string name, int lines, string type, string slug)
+    {
+        Name = name;
+        Lines = lines;
+        Type = type;
+        Slug = slug;
+    }
+
+    public Play(string name, int lines, string type)
+    {
+        Name = name;
+        Lines = lines;
+        Type = type;
     }
 }
