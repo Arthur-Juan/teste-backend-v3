@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TheatricalPlayersRefactoringKata.Data;
 using TheatricalPlayersRefactoringKata.Data.Domain;
 using TheatricalPlayersRefactoringKata.Data.Errors;
+using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions;
 using TheatricalPlayersRefactoringKata.Data.Model.Input;
 
 namespace TheatricalPlayersRefactoringKata.Application.Services
@@ -27,7 +28,7 @@ namespace TheatricalPlayersRefactoringKata.Application.Services
 
             if(customerExists != null)
             {
-                throw new Exception(DomainErrors.Customer.CustomerExists);
+                throw new InvalidCustomerException(DomainErrors.Customer.CustomerExists);
             }
 
             //todo -> add mapper
