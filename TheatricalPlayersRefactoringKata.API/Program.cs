@@ -1,3 +1,4 @@
+using TheatricalPlayersRefactoringKata.API.Extensions;
 using TheatricalPlayersRefactoringKata.Application.Services;
 using TheatricalPlayersRefactoringKata.Data.Extensions;
 
@@ -17,9 +18,10 @@ builder.Services.AddScoped<CustomerService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseErrorHandler();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
