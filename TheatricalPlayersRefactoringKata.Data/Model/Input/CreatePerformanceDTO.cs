@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheatricalPlayersRefactoringKata.Data.Model.Input
 {
-    public record CreatePerformanceDTO(string playId, int audience);
+    public record CreatePerformanceDTO(string playSlug, int audience);
     
     
 }

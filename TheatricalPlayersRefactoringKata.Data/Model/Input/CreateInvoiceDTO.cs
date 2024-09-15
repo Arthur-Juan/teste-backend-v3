@@ -7,5 +7,5 @@ using TheatricalPlayersRefactoringKata.Data.Domain;
 
 namespace TheatricalPlayersRefactoringKata.Data.Model.Input
 {
-    public record CreateInvoiceDTO(string customer, List<CreatePerformanceDTO> createPerformanceDTO, Dictionary<string, Play> plays);
+    public record CreateInvoiceDTO(string customer, List<CreatePerformanceDTO> performances);
 }

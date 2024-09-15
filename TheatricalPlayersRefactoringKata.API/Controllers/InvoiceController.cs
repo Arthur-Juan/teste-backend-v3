@@ -12,28 +12,20 @@ namespace TheatricalPlayersRefactoringKata.API.Controllers
     public class InvoiceController : ControllerBase
     {
         private readonly StatementPrinterService _statementPrinterService;
-
-        public InvoiceController(StatementPrinterService statementPrinterService)
+        private readonly InvoiceService _invoiceService;
+        public InvoiceController(StatementPrinterService statementPrinterService, InvoiceService invoiceService)
         {
             _statementPrinterService = statementPrinterService;
+            _invoiceService = invoiceService;
         }
 
-        [HttpPost]
-        public IActionResult PrintStatment(CreateInvoiceDTO data)
+       
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateInvoice(CreateInvoiceDTO data)
         {
-
-            var performances = new List<Performance>();
-            foreach(var perf in data.createPerformanceDTO)
-            {
-                performances.Add(new Performance(perf.playId, perf.audience));
-            }
-
-
-            var invoice= new Invoice(new Customer(data.customer), performances);
-
-            var result = _statementPrinterService.Print(invoice, data.plays);
-
-            return Ok(result);
+            await _invoiceService.Create(data);
+            return NoContent();
         }
 
     }
