@@ -9,6 +9,7 @@ using TheatricalPlayersRefactoringKata.Data.Domain;
 using TheatricalPlayersRefactoringKata.Data.Errors;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Play;
 using TheatricalPlayersRefactoringKata.Data.Model.Input;
+using TheatricalPlayersRefactoringKata.Data.Model.Output;
 
 namespace TheatricalPlayersRefactoringKata.Application.Services;
 public class PlaysService
@@ -35,5 +36,19 @@ public class PlaysService
         await _appDbContext.SaveChangesAsync();
 
         return play;
+    }
+
+    public async Task<List<PlayOutputDTO>> ListAsync()
+    {
+        var plays = await _appDbContext.Plays.AsNoTracking().Where(x => x.DeletedAt == null).ToListAsync();
+        
+        var output = new List<PlayOutputDTO>();
+        
+        foreach(var play in plays)
+        {
+            output.Add(new PlayOutputDTO(play.Name, play.Lines, play.Type, play.Slug));
+        }
+
+        return output;
     }
 }

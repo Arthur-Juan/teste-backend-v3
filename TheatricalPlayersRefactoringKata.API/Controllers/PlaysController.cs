@@ -24,5 +24,11 @@ namespace TheatricalPlayersRefactoringKata.API.Controllers
             await _playsService.CreateAsync(data);
             return NoContent();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            return Ok(await _playsService.ListAsync());
+        }
     }
 }

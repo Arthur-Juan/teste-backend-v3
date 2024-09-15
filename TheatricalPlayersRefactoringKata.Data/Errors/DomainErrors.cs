@@ -12,6 +12,12 @@ namespace TheatricalPlayersRefactoringKata.Data.Errors
         public static class Customer
         {
             public const string CustomerExists = "this customer already exists";
+            public const string CustomerNotFound = "customer not found";
+        }
+
+        public static class Play
+        {
+            public const string PlayExists = "this play already exists";
         }
     }
 }
