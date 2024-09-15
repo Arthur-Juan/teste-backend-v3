@@ -14,7 +14,6 @@ namespace TheatricalPlayersRefactoringKata.Tests
     {
         public static IServiceProvider CreateServiceProvider()
         {
-            // Set DataDirectory
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
             var builder = new ConfigurationBuilder()
@@ -22,7 +21,6 @@ namespace TheatricalPlayersRefactoringKata.Tests
                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             var _configuration = builder.Build();
 
-            // Configure the service collection
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddLogging();
             serviceCollection.ConfigureData(_configuration);
@@ -32,11 +30,11 @@ namespace TheatricalPlayersRefactoringKata.Tests
 
             var _serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // Ensure database schema creation
             using (var scope = _serviceProvider.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                context.Database.EnsureCreated(); // This should create the database file
+                context.Database.EnsureCreated(); 
+
             }
 
             return _serviceProvider;

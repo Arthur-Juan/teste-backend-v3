@@ -62,4 +62,17 @@ public class PlayTests
         Assert.Contains(DomainErrors.Play.PlayExists, exception.Message);
 
     }
+
+    [Fact]
+    public async Task TestShouldNotReturnEmptyListIfDatabaseIsNotEmpty()
+    {
+        var dto = CreateRandomPlayDTO();
+
+        await _playsService.CreateAsync(dto);
+
+        var list = await _playsService.ListAsync();
+
+        Assert.True(list.Any());
+
+    }
 }
