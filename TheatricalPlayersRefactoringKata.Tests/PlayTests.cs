@@ -75,4 +75,34 @@ public class PlayTests
         Assert.True(list.Any());
 
     }
+
+    [Fact]
+    public async Task TestShouldReturnAPlayBySlug()
+    {
+        var dto = CreateRandomPlayDTO();
+
+        await _playsService.CreateAsync(dto);
+
+        var play = await _playsService.GetBySlugAsync(dto.slug);
+
+        Assert.NotNull(play);
+        Assert.Equal(dto.name, play.name);
+        Assert.Equal(dto.lines, play.lines);
+        Assert.Equal(dto.type, play.type);
+        Assert.Equal(dto.slug, play.slug);
+    }
+
+    [Fact]
+    public async Task TestShouldThrowExceptionIfSlugNotExists()
+    {
+
+        var exception = await Assert.ThrowsAsync<PlayNotFoundException>(async () =>
+        {
+            await _playsService.GetBySlugAsync("notexists");
+        });
+        Assert.Contains(DomainErrors.Play.PlayNotFound, exception.Message);
+    }
+
+
+
 }
