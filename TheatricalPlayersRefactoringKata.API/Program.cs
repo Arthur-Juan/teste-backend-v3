@@ -15,6 +15,8 @@ builder.Services.ConfigureData(builder.Configuration);
 
 builder.Services.AddScoped<StatementPrinterService>();
 builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<InvoiceService>();
+builder.Services.AddScoped<PlaysService>();
 
 var app = builder.Build();
 

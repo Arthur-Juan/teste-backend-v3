@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions;
+using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Play;
 using TheatricalPlayersRefactoringKata.Data.Model.Output;
 
 namespace TheatricalPlayersRefactoringKata.API.Extensions;
@@ -22,6 +23,13 @@ public static class ErrorHandler
                     var message = exception?.Message;
 
                     if (exception is InvalidCustomerException)
+                    {
+                        code = (int)HttpStatusCode.BadRequest;
+                        message = exception.Message;
+                    }
+
+
+                    if (exception is InvalidPlayException)
                     {
                         code = (int)HttpStatusCode.BadRequest;
                         message = exception.Message;

@@ -26,7 +26,10 @@ namespace TheatricalPlayersRefactoringKata.Tests
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddLogging();
             serviceCollection.ConfigureData(_configuration);
+
             serviceCollection.AddScoped<CustomerService>();
+            serviceCollection.AddScoped<PlaysService>();
+
             var _serviceProvider = serviceCollection.BuildServiceProvider();
 
             // Ensure database schema creation
