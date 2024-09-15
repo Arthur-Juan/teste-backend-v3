@@ -30,5 +30,11 @@ namespace TheatricalPlayersRefactoringKata.API.Controllers
         {
             return Ok(await _playsService.ListAsync());
         }
+
+        [HttpGet("{slug}")]
+        public async Task<IActionResult> GetBySlug(string slug)
+        {
+            return Ok(await _playsService.GetBySlugAsync(slug));
+        }
     }
 }

@@ -35,6 +35,13 @@ public static class ErrorHandler
                         message = exception.Message;
                     }
 
+                    if (exception is PlayNotFoundException)
+                    {
+                        code = (int)HttpStatusCode.NotFound;
+                        message = exception.Message;
+                    }
+
+
                     ctx.Response.StatusCode = code;
                     ctx.Response.ContentType = "application/json";
                     await ctx.Response.WriteAsJsonAsync(new ErrorDTO(

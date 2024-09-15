@@ -18,6 +18,8 @@ namespace TheatricalPlayersRefactoringKata.Data.Errors
         public static class Play
         {
             public const string PlayExists = "this play already exists";
+            public const string PlayNotFound = "play not found";
+
         }
     }
 }

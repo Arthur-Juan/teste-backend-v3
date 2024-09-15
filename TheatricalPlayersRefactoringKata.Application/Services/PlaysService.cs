@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,5 +51,16 @@ public class PlaysService
         }
 
         return output;
+    }
+
+    public async Task<PlayOutputDTO> GetBySlugAsync(string slug)
+    {
+        var play = await _appDbContext.Plays.AsNoTracking().FirstOrDefaultAsync(x => x.Slug == slug);
+        if(play == null)
+        {
+            throw new PlayNotFoundException(DomainErrors.Play.PlayNotFound);    
+        }
+
+        return new PlayOutputDTO(play.Name, play.Lines, play.Type, play.Slug);
     }
 }
