@@ -46,7 +46,7 @@ public class InvoiceService
         var invoice = new Invoice(customer, performances);
         await _appDbContext.Invoices.AddAsync(invoice);
 
-        customer.Invoices?.Add(invoice);
+        customer.AddInvoice(invoice);
 
         await _appDbContext.SaveChangesAsync();
         return invoice;

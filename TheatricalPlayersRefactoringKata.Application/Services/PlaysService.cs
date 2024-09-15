@@ -47,7 +47,7 @@ public class PlaysService
         
         foreach(var play in plays)
         {
-            output.Add(new PlayOutputDTO(play.Name, play.Lines, play.Type, play.Slug));
+            output.Add(new PlayOutputDTO(play.Name, play.Lines, play.Type.ToString(), play.Slug));
         }
 
         return output;
@@ -61,6 +61,6 @@ public class PlaysService
             throw new PlayNotFoundException(DomainErrors.Play.PlayNotFound);    
         }
 
-        return new PlayOutputDTO(play.Name, play.Lines, play.Type, play.Slug);
+        return new PlayOutputDTO(play.Name, play.Lines, play.Type.ToString(), play.Slug);
     }
 }
