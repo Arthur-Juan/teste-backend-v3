@@ -11,6 +11,17 @@ namespace TheatricalPlayersRefactoringKata.Data.Domain
         public string? Name {  get; private set; }
         public List<Invoice>? Invoices { get; private set; } 
 
+
+        public void AddInvoice(Invoice invoice)
+        {
+            if(Invoices == null)
+            {
+                Invoices = new List<Invoice>();
+            }
+
+            Invoices.Add(invoice);
+        }
+
         public Customer(string name)
         {
             Name = name;

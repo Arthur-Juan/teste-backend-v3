@@ -21,5 +21,10 @@ namespace TheatricalPlayersRefactoringKata.Data.Errors
             public const string PlayNotFound = "play not found";
 
         }
+
+        public static class Genre
+        {
+            public const string InvalidGenre = "Invalid Genre";
+        }
     }
 }
