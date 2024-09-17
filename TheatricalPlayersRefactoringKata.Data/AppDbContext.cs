@@ -18,5 +18,19 @@ namespace TheatricalPlayersRefactoringKata.Data
         public DbSet<Performance> Performances { get; set; }
         public DbSet<Play> Plays { get; set; }
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Genre>().HasData(
+                new Genre("comedy"),
+                new Genre("tragedy"),
+                new Genre("history")
+
+            );
+        }
     }
 }

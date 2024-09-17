@@ -11,7 +11,7 @@ public class Play : BaseEntity
     public string Name { get; private set; }
     public int Lines { get; private set; }
     public string Type { get; private set; }
-    public GenreEnum Genre { get; private set; }
+    public Genre? Genre { get; private set; }
 
     public string? Slug { get; private set; }
 
@@ -21,25 +21,20 @@ public class Play : BaseEntity
     }
 
 
-    public void SetGenre(string type)
+  
+
+    public Play(string name, int lines, string type, string slug, Genre genre)
     {
-        GenreEnum genre;
-        if (Enum.TryParse<GenreEnum>(type, out genre))
-        {
-            Genre = genre;
-        }
-        else
-        {
-            throw new InvalidGenreException(DomainErrors.Genre.InvalidGenre);
-        }
-
+        Name = name;
+        Lines = lines;
+        Type = type;
+        Slug = slug;
+        Genre = genre;
     }
-
     public Play(string name, int lines, string type, string slug)
     {
         Name = name;
         Lines = lines;
-        SetGenre(type);
         Type = type;
         Slug = slug;
     }
@@ -49,6 +44,5 @@ public class Play : BaseEntity
         Name = name;
         Lines = lines;
         Type = type;
-        SetGenre(type);
     }
 }
