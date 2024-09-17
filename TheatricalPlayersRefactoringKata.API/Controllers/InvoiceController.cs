@@ -28,5 +28,17 @@ namespace TheatricalPlayersRefactoringKata.API.Controllers
             return NoContent();
         }
 
+        [HttpGet("{customer}")]
+        public async Task<IActionResult> GetInvoicesByClient(string customer)
+        {
+            if (string.IsNullOrWhiteSpace(customer))
+            {
+                return BadRequest("customer is required");
+            }
+
+            var result = await _invoiceService.GetInvoicesByCustomerAsync(customer);
+            return Ok(result);
+        }
+
     }
 }
