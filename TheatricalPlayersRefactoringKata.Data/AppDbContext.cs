@@ -20,6 +20,8 @@ namespace TheatricalPlayersRefactoringKata.Data
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Statement> Statements { get; set; }
+        public DbSet<PerformanceCost> PerformanceCost { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
