@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TheatricalPlayersRefactoringKata.Application.Services;
 using TheatricalPlayersRefactoringKata.Data.Errors;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions;
+using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Genre;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Play;
 using TheatricalPlayersRefactoringKata.Data.Model.Input;
 using Xunit;
@@ -42,7 +43,7 @@ public class PlayTests
         Assert.NotNull(result);
         Assert.Equal(dto.name, result.Name);
         Assert.Equal(dto.lines, result.Lines);
-        Assert.Equal(dto.type, result.Type);
+        Assert.Equal(dto.genre, result.Type);
         Assert.Equal(dto.slug, result.Slug);
 
 
@@ -88,7 +89,7 @@ public class PlayTests
         Assert.NotNull(play);
         Assert.Equal(dto.name, play.name);
         Assert.Equal(dto.lines, play.lines);
-        Assert.Equal(dto.type, play.type);
+        Assert.Equal(dto.genre, play.type);
         Assert.Equal(dto.slug, play.slug);
     }
 
@@ -101,6 +102,22 @@ public class PlayTests
             await _playsService.GetBySlugAsync("notexists");
         });
         Assert.Contains(DomainErrors.Play.PlayNotFound, exception.Message);
+    }
+
+
+    [Fact]
+    public async Task TestShouldThrowExceptionIfGenreNotExists()
+    {
+        var play = new CreatePlayDTO("test", 123, "notExists", "test");
+
+        var exception = await Assert.ThrowsAsync<InvalidGenreException>(async () =>
+        {
+
+            await _playsService.CreateAsync(play);
+        });
+
+        Assert.Contains(DomainErrors.Genre.InvalidGenre, exception.Message);
+
     }
 
 

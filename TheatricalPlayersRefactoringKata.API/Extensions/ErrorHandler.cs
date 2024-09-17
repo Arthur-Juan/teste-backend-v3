@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions;
+using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Genre;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Play;
 using TheatricalPlayersRefactoringKata.Data.Model.Output;
 
@@ -38,6 +39,12 @@ public static class ErrorHandler
                     if (exception is PlayNotFoundException)
                     {
                         code = (int)HttpStatusCode.NotFound;
+                        message = exception.Message;
+                    }
+
+                    if (exception is InvalidGenreException)
+                    {
+                        code = (int)HttpStatusCode.BadRequest;
                         message = exception.Message;
                     }
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TheatricalPlayersRefactoringKata.Data;
 using TheatricalPlayersRefactoringKata.Data.Domain;
 using TheatricalPlayersRefactoringKata.Data.Errors;
+using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Genre;
 using TheatricalPlayersRefactoringKata.Data.Errors.Exceptions.Play;
 using TheatricalPlayersRefactoringKata.Data.Model.Input;
 using TheatricalPlayersRefactoringKata.Data.Model.Output;
@@ -32,7 +33,12 @@ public class PlaysService
 
         }
 
-        play = new Play(createPlayDto.name, createPlayDto.lines, createPlayDto.type, createPlayDto.slug);
+        var genre = await _appDbContext.Genres.FirstOrDefaultAsync(x => x.Name == createPlayDto.genre);
+        if (genre == null) {
+            throw new InvalidGenreException(DomainErrors.Genre.InvalidGenre);
+        }
+
+        play = new Play(createPlayDto.name, createPlayDto.lines, createPlayDto.genre, createPlayDto.slug);
         await _appDbContext.Plays.AddAsync(play);
         await _appDbContext.SaveChangesAsync();
 
